@@ -14,25 +14,43 @@ let menuItems = [
 // Step 1: Write a function that will create a menu component as seen below:
 
 // <div class="menu">
+
 //   <ul>
+
 //     {each menu item as a list item}
+
 //   </ul>
+
 // </div>
 
 // The function takes an array as its only argument.
 
 function menuCreator(menuData) {
 
+  // CREATE PARENT DIV FOR CONTAINER
+  const pareDiv = document.createElement('div');
+
+  // GIVE MENU CLASS FEATURES
+  pareDiv.classList.add('menu')
+
+  // CREATE UNORDEREDLIST
+  const unorList = document.createElement('ul')
+
+  //APPEND UNORDEREDLIST TO PARENTDIV
+  pareDiv.appendChild(unorList);
+
+  
 
   // Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
   // Add those items to the <ul>
 
   // create var to hold the iteration over the incoming data
+
   const mappedItems = menuData.map(dataItem => {
 
     // use map to iterate over the array 
 
-     //after each iteration the document needs to create the new "li" element which is stored in a new var
+     //after each iteration the document needs to create the //ew "li" element which is stored in a new var
 
     const createLI = document.createElement('li')
 
@@ -40,15 +58,19 @@ function menuCreator(menuData) {
 
     createLI.textContent = dataItem;
 
+    // ATTACH THE CREATED LIST ITEM TO THE UL
+    unorList.appendChild(createLI)
 
-    console.log(menuCreator);
-debugger
+
+    // console.log(menuCreator);
+
 
   } ) 
 
 
   // Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
 
+  // VAR CREATED TO HOLD THE MENUbTN 
  const menuBtn = document.querySelector('.menu-button');
 
  
@@ -57,19 +79,27 @@ debugger
 
   // eventlis 
 
+  // MAKE MENUBTN TOGGLE THE MENU OPEN WHEN CLICKED
+
   menuBtn.addEventListener('click', event => {
 
-    
+    // TOGGLE THE PARENT DIV ON CLICK
+    pareDiv.classList.toggle('menu--open');
 
+    // console.log(mappedItems)
 
   })
 
-
-
   // Step 5: return the menu component.
 
-
-  return null
+  // RETURN THE DIV
+  return pareDiv;
 }
 
 // Step 6: add the menu component to the DOM.
+
+// INVOKE THE FUNCTION FOR USE
+menuCreator(menuItems);
+
+// SANITY CHECK!!!! THIS PART WORKS SO FAR
+console.log(menuCreator(menuItems))
