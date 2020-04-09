@@ -25,7 +25,7 @@ let menuItems = [
 
 // The function takes an array as its only argument.
 
-function menuCreator(menuData) {
+function menuCreator(menuItems) {
 
   // CREATE PARENT DIV FOR CONTAINER
   const pareDiv = document.createElement('div');
@@ -46,7 +46,7 @@ function menuCreator(menuData) {
 
   // create var to hold the iteration over the incoming data
 
-  const mappedItems = menuData.map(dataItem => {
+  const mappedItems = menuItems.map(dataItem => {
 
     // use map to iterate over the array 
 
@@ -103,3 +103,10 @@ menuCreator(menuItems);
 
 // SANITY CHECK!!!! THIS PART WORKS SO FAR
 console.log(menuCreator(menuItems))
+
+
+// NEED TO LINK TO HTML SELEC
+const menuCompon = document.querySelector('.header')
+
+menuCompon.appendChild(menuCreator(menuItems))
+
