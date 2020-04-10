@@ -39,22 +39,22 @@ function menuCreator(menuItems) {
   //APPEND UNORDEREDLIST TO PARENTDIV
   pareDiv.appendChild(unorList);
 
-  
+
 
   // Step 2: Inside this function, iterate over the array creating a list item <li> element for each item in the array. 
   // Add those items to the <ul>
 
   // create var to hold the iteration over the incoming data
 
-  const mappedItems = menuItems.map(dataItem => {
+  menuItems.forEach(dataItem => {
 
     // use map to iterate over the array 
 
-     //after each iteration the document needs to create the //ew "li" element which is stored in a new var
+    //after each iteration the document needs to create the //ew "li" element which is stored in a new var
 
     const createLI = document.createElement('li')
 
-     // assign the text of menuItem array/data to li 
+    // assign the text of menuItem array/data to li 
 
     createLI.textContent = dataItem;
 
@@ -65,15 +65,15 @@ function menuCreator(menuItems) {
     // console.log(menuCreator);
 
 
-  } ) 
+  })
 
 
   // Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
 
   // VAR CREATED TO HOLD THE MENUbTN 
- const menuBtn = document.querySelector('.menu-button');
+  const menuBtn = document.querySelector('.menu-button');
 
- 
+
   // Step 4: add a click event listener to the menu button. When clicked it should toggle the class 'menu--open' on the menu (your div with a 'menu' class).
 
 
@@ -81,14 +81,19 @@ function menuCreator(menuItems) {
 
   // MAKE MENUBTN TOGGLE THE MENU OPEN WHEN CLICKED
 
-  menuBtn.addEventListener('click', event => {
 
-    // TOGGLE THE PARENT DIV ON CLICK
+  const menuToggle = () => {
+
     pareDiv.classList.toggle('menu--open');
 
-    // console.log(mappedItems)
 
-  })
+  }
+
+  menuBtn.addEventListener('click', menuToggle)
+
+  console.log(menuBtn)
+
+
 
   // Step 5: return the menu component.
 
@@ -96,17 +101,17 @@ function menuCreator(menuItems) {
   return pareDiv;
 }
 
+
+
 // Step 6: add the menu component to the DOM.
 
 // INVOKE THE FUNCTION FOR USE
-menuCreator(menuItems);
-
-// SANITY CHECK!!!! THIS PART WORKS SO FAR
-console.log(menuCreator(menuItems))
-
+// menuCreator(menuItems);
 
 // NEED TO LINK TO HTML SELEC
 const menuCompon = document.querySelector('.header')
 
 menuCompon.appendChild(menuCreator(menuItems))
 
+// SANITY CHECK!!!! THIS PART WORKS SO FAR
+console.log(menuCompon)
